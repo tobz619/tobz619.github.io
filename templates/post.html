@@ -1,0 +1,24 @@
+<title>$title$</title>
+<article>
+    <section class="header">
+        Posted on $date$
+        $if(author)$
+            by $author$
+        $else$
+            by unknown
+        $endif$
+    </section>
+    <section class="header">
+        $if(keywords)$
+            Keywords: $keywords$
+        $endif$
+    </section>
+    <section class="header">
+        $if(description)$
+            Description: $description$
+        $endif$
+    </section>
+    <section>
+        $body$
+    </section>
+</article>
