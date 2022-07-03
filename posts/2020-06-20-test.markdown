@@ -1,0 +1,16 @@
+---
+title: A Test Post
+author: Tobi Oloke
+keywords: Hakyll, Haskell
+description: A nice easy well done message
+---
+
+Well done Tobi.
+
+You have done well to make it this far.
+
+Continue to learn and progress and you will make it!
+
+Much love,
+
+Tobi
