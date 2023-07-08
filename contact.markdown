@@ -9,3 +9,5 @@ Twitter: <a href = "https://twitter.com/tobz619" > tobz619 </a>
 YouTube: <a href = "https://www.youtube.com/channel/UCjA_GLW3WznqqkdrVOnA3FA"> Check it! </a>
 
 Instagram: <a href = "https://www.instagram.com/tobioloke_/"> @tobioloke_ </a>
+
+Twitch: <a href = "https://www.twitch.tv/tobz619" > tobz619 </a>
