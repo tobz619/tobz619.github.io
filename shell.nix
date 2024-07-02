@@ -1,29 +1,21 @@
-{ nixpkgs ? import <nixpkgs> {}, compiler ? "default", doBenchmark ? false }:
+{ pkgs ? import <unstable> {}, compiler ? "ghc96"}:
 
-let
 
-  inherit (nixpkgs) pkgs;
-
-  f = { mkDerivation, base, hakyll, lib }:
-      mkDerivation {
-        pname = "tobisite";
-        version = "0.1.0.0";
-        src = ./.;
-        isLibrary = false;
-        isExecutable = true;
-        executableHaskellDepends = [ base hakyll ];
-        license = "unknown";
-        mainProgram = "site";
-      };
-
-  haskellPackages = if compiler == "default"
-                       then pkgs.haskellPackages
-                       else pkgs.haskell.packages.${compiler};
-
-  variant = if doBenchmark then pkgs.haskell.lib.doBenchmark else pkgs.lib.id;
-
-  drv = variant (haskellPackages.callPackage f {});
-
-in
-
-  if pkgs.lib.inNixShell then drv.env else drv
+pkgs.haskell.packages.${compiler}.shellFor { 
+    packages = hpkgs: [
+      hpkgs.distribution-nixpkgs
+      (hpkgs.callPackage ./mysite.nix {})
+    ];
+    withHoogle = true;
+    shellHook = ''
+      export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
+      export LANG=en_US.UTF.8
+    '';
+    nativeBuildInputs = with pkgs; [
+      haskell-language-server
+      cabal-install
+      cabal2nix
+      haskell.packages."${compiler}".stack
+      pkg-config
+    ];
+}
