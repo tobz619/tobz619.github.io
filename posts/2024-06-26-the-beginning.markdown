@@ -11,7 +11,7 @@ Why would I make a website if I would never use it?
 ### What to write about?
 I don't know, but I will write eventually.
 
-```haskell
+```
 testcode :: String
 testcode = "This is some test code."
 ```

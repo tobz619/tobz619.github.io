@@ -1,7 +1,12 @@
-{ pkgs ? import <unstable> {}, compiler ? "ghc96"}:
+{ pkgs ? import <nixpkgs> {}, compiler ? "ghc96"}:
 
 
-pkgs.haskell.packages.${compiler}.shellFor { 
+let
+  haskellPacks = pkgs.haskell.packages.${compiler};
+
+in
+
+haskellPacks.shellFor { 
     packages = hpkgs: [
       hpkgs.distribution-nixpkgs
       (hpkgs.callPackage ./mysite.nix {})
@@ -11,11 +16,13 @@ pkgs.haskell.packages.${compiler}.shellFor {
       export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
       export LANG=en_US.UTF.8
     '';
-    nativeBuildInputs = with pkgs; [
+    nativeBuildInputs = (with haskellPacks; [
       haskell-language-server
       cabal-install
       cabal2nix
-      haskell.packages."${compiler}".stack
+      stack
+      ormolu
+    ]) ++ (with pkgs; [
       pkg-config
-    ];
+    ]);
 }
