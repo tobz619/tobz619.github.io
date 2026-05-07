@@ -36,6 +36,23 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
+    match "videos.html" $ do
+      route idRoute
+      compile $ pandocCompiler
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= relativizeUrls
+    
+    -- create ["videos.html"] $ do
+    --   route idRoute
+    --   compile $ do
+    --     videos <- loadAll "videos/*"
+    --     let videoCtx = listField "videos" defaultContext (return videos) <> 
+    --                    defaultContext
+    --     makeItem ""
+    --       >>= loadAndApplyTemplate "templates/videos.html" videoCtx
+    --       >>= loadAndApplyTemplate "templates/default.html" defaultContext
+    --       >>= relativizeUrls
+
     create ["archive.html"] $ do
         route idRoute
         compile $ do

@@ -1,4 +1,4 @@
-{ mkDerivation, base, hakyll, zlib }:
+{ mkDerivation, base, hakyll, lib }:
 mkDerivation {
   pname = "tobisite";
   version = "0.1.0.0";

@@ -1,6 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module MyCss where
 
-{-# LANGUAGE OverloadedStrings #-}
 import           Clay
 import qualified Data.Text.Lazy.IO as T
 
@@ -13,10 +14,9 @@ fancyButton = ".fancy-button" ?
     sym2 padding    (em 0.5) (em 1)
     sym borderRadius (px 5)
     color             white
-    border            solid (px 1) red
-
-     hover &
+    border            (px 1) solid red
+    hover &
        do color        green
 
 main :: IO ()
-main - T.putStr $ renderWith compact test
+main = T.putStr $ renderWith pretty [] fancyButton
