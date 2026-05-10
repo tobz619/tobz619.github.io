@@ -55,15 +55,15 @@ body
   padding-right         : 50px;
   min-width             : 500px;
   align-content         : space-between;
-  grid-template-columns : 5fr 1fr;
+  grid-template-columns : 999fr 1fr;
   grid-area             : content;
+  grid-template-areas   : "text mainface";
 }
 
 
 div #mainface
 {
-  display     : flex;
-  align-items : center;
+  margin-top : 40%;
 }
 
 
@@ -81,7 +81,7 @@ div #miniface
   overflow-x    : hidden;
   display       : grid;
   align-content : flex-start;
-  min-width     : 160px;
+  min-width     : 16rem;
   grid-area     : sidenav;
 }
 
@@ -101,7 +101,7 @@ div #miniface
   margin-top                 : 5px;
   color                      : #000000;
   border                     : 3px solid #000000;
-  transition-duration        : 1500.0ms;
+  transition-duration        : 750.0ms;
   transition-timing-function : ease;
 }
 
@@ -167,8 +167,8 @@ div #miniface
 #links a > img
 {
   display               : flex;
-  max-width             : 30px;
-  max-height            : 30px;
+  max-width             : 4em;
+  max-height            : 4em;
   -webkit-transform-box : fillBox;
   -moz-transform-box    : fillBox;
   -ms-transform-box     : fillBox;
@@ -212,10 +212,17 @@ div #miniface
   box-shadow                 : none;
 }
 
+#last-update
+{
+  display         : flex;
+  justify-content : center;
+  align-content   : center;
+}
+
 footer
 {
   display            : grid;
-  grid-template-rows : 40px auto;
+  grid-template-rows : 4rem auto;
   grid-area          : footer;
   min-width          : 60%;
   padding-top        : 2rem;

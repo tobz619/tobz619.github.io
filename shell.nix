@@ -12,7 +12,7 @@ haskellPacks.shellFor {
       # hpkgs.distribution-nixpkgs
       (hpkgs.callPackage ./mysite.nix {})
     ];
-    withHoogle = true;
+    withHoogle = false;
     shellHook = ''
       export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
       export LANG=en_US.UTF.8

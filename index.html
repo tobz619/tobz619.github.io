@@ -3,19 +3,42 @@ title: Home
 ---
 
 <body>
-    <img src="/images/FacePixelnobg.png" id="miniface"/>
-    <img src="/images/FacePixelnobg.png" id="face"/>
+    <div id="text">
+    <h1>Home</h1>
+    <h2>Haskell Projects</h2>
+    <ul>
+        <h3>Software Renderer</h3>
+        <video width="480" height="270" controls> 
+            <source src="/assets/renderer.webm" type="video/webm">
+            Your browser does not support the video tag
+        </video>
+        <p>
+            I'm currently working on a renderer in Haskell using SDL.
 
-    <p> HOMEPAGE WIP </p>
+            Firstly optimising it as much as possible on the CPU before creating custom allocators and abstractions for sending commands and buffers to the GPU.
+        </p>
+    </ul>
+    <ul>
+        <h3>www.boardword.com</h3>
+        <p>I am a maintainer of the Haskell backend for <a href="https://boardword.com">https://boardword.com</a> and associated websites</p>
+    </ul>
+    <ul>
+        <h3>Terminal Snake!</h3>
+        <p>
+            I *WAS* working on version of snake in the terminal in Haskell using the <a href="https://hackage.haskell.org/package/brick">brick</a> library. Eventually I got bored and decided to work on the renderer instead.  
+            Progress can be found <a href="https://github.com/tobz619/haskell-snake-learn">here</a>
+        </p>
+    </ul>
 
-    <p>Be sure to check out the about page!</p>
+    <h2>Miscellaneous Creations</h2>
+    <p>I've made many mini creations. I'm still undecided about how best to present them on this site.</p>
 
-    <h1>Haskell Projects</h1>
-
-    <h1>Videos</h1>
-
-    <h1>Blog Posts</h1>
+    <h2>Blog Posts</h2>
+    <p>I don't blog much (yet!). I kind of want to build my own self-hosted microblogger and cross post it to similar platforms but always have a copy here.</p>
     $partial("templates/post-list.html")$
 
     <p>…or you can find more in the <a href="/archive.html">archives</a>.</p>
+    
+    </div>
+    <div id="mainface"><img src="/images/FacePixelnobg.png"/></div>
 </body>

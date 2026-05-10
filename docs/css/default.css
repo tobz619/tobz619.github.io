@@ -1,154 +1,248 @@
-html {
-  font-size: 62.5%;
-  margin: auto;
-  font-family: sans-serif;
-}
-
-div {
-  margin: 0px auto 0px auto;
-  width: 1080px;
-  display: block
-}
 
 
-body {
-  padding: 0px 0px 60px 0px;
-  font-size: 1.6rem;
-  color: rgb(84, 84, 84);
+:root .--colour-hover-bg
+{
+  color : #00c8c8;
 }
 
-div#content {
-  width: 900px;
-  float: right
+:root .--colour-hover-fg
+{
+  color : #ffffff;
 }
 
-.sidenav {
-  position: fixed;
-  width: 160px; /* Set the width of the sidebar */
-  height: 100%;
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-  margin-right: 10px;
-  float: left
+:root .--colour-active-bg
+{
+  color : #00de32;
 }
 
-.sidenav a {
-  margin-right: 10px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: block; /*Makes links appear below each other */
+:root .--colour-active-fg
+{
+  color : #ffffff;
 }
 
-.sidenav a:hover {
-  width: 100%;
-  background-color: grey;
-  color: white
-}
-.sidenav a:active {
-  background-color: green;
-  color: white
+:root .--colour-border
+{
+  color : #a6a6a6;
 }
 
-footer {
-  width: 900px;
-  display: inline-block;
-  margin-top: 3rem;
-  padding: 10px 0;
-  border-top: 0.3rem solid rgb(84, 84, 84);
-  font-size: 1.2rem;
-  color: #555;
-  text-align: center;
-  float: right;
+html
+{
+  font-size   : 62.5%;
+  margin      : auto auto auto auto;
+  min-width   : 830px;
+  min-height  : 400px;
+  font-family : sans-serif;
+  max-width   : 1200px;
 }
 
-h1 {
-  font-size: 2.5rem;
+body
+{
+  display               : grid;
+  min-width             : 480px;
+  background-color      : #e6e6e6;
+  color                 : #555555;
+  font-size             : 1.5rem;
+  grid-template-columns : 1fr 30fr;
+  grid-template-rows    : 5fr 1fr;
+  grid-template-areas   : "sidenav content" "sidenav footer";
+  justify-content       : space-evenly;
 }
 
-h2 {
-  font-size: 2rem;
+#content
+{
+  display               : grid;
+  padding-left          : 50px;
+  padding-right         : 50px;
+  min-width             : 500px;
+  align-content         : space-between;
+  grid-template-columns : 999fr 1fr;
+  grid-area             : content;
+  grid-template-areas   : "text mainface";
 }
 
-article .header {
-  font-size: 1.4rem;
-  font-style: italic;
-  color: #555;
+
+div #mainface
+{
+  margin-top : 40%;
 }
 
-.logo a {
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
+
+div #miniface
+{
+  height : 32px;
+  width  : auto;
+  float  : right;
+  margin : 5px 5px 5px 5px;
 }
 
-span {
-  margin: auto;
-  width: 50%;
-  height: auto;
-  justify-content: space-around;
-  display: flex;
-  text-align: center
+#sidenav
+{
+  z-index       : 1;
+  overflow-x    : hidden;
+  display       : grid;
+  align-content : flex-start;
+  min-width     : 16rem;
+  grid-area     : sidenav;
 }
 
-@media (max-width: 60%) {
-  body {
-    width: 50%;
-    margin: 0;
-    padding: 0 5%;
-  }
-  header {
-    margin: 3.5rem 0;
-  }
-  .sidenav {
-    margin: 0 auto 3rem;
-    text-align: center;
-  }
-  footer {
-    text-align: center;
-  }
-  .logo {
-    text-align: center;
-    margin: 1rem auto 3rem;
-  }
-  .logo a {
-    font-size: 2.4rem;
-  }
-  .sidenav a {
-    display: block;
-    line-height: 1.6;
-  }
+#sidenav a
+{
+  font-size                  : 1.8rem;
+  text-transform             : uppercase;
+  display                    : block;
+  -webkit-box-shadow         : 5px 5px rgba(0,0,0,0.5);
+  -moz-box-shadow            : 5px 5px rgba(0,0,0,0.5);
+  -ms-box-shadow             : 5px 5px rgba(0,0,0,0.5);
+  -o-box-shadow              : 5px 5px rgba(0,0,0,0.5);
+  box-shadow                 : 5px 5px rgba(0,0,0,0.5);
+  padding-bottom             : 2rem;
+  text-decoration            : none;
+  max-width                  : 90%;
+  margin-top                 : 5px;
+  color                      : #000000;
+  border                     : 3px solid #000000;
+  transition-duration        : 750.0ms;
+  transition-timing-function : ease;
 }
 
-@media (min-width: 20%) {
-  body {
-    width: 60%;
-    margin: 0;
-    padding: 0 5%;
-  }
-  header {
-    margin: 4.2rem 0;
-  }
-  .sidenav {
-    margin: 0 auto 3rem;
-    text-align: center;
-  }
-  footer {
-    text-align: center;
-  }
-  .logo {
-    text-align: center;
-    margin: 1rem auto 3rem;
-  }
-  .logo a {
-    font-size: 2.4rem;
-  }
-  nav a {
-    display: vertical;
-    margin: 0 0.6rem;
-  }
+#sidenav a:hover
+{
+  background-color           : #00c8c8;
+  color                      : #ffffff;
+  font-weight                : 1000;
+  transition-duration        : 150.0ms;
+  transition-timing-function : ease;
 }
+
+#sidenav a:active
+{
+  background-color           : #00de32;
+  color                      : #ffffff;
+  font-weight                : 1000;
+  transition-duration        : 150.0ms;
+  transition-timing-function : ease;
+  -webkit-transform          : translate(4px,4px);
+  -moz-transform             : translate(4px,4px);
+  -ms-transform              : translate(4px,4px);
+  -o-transform               : translate(4px,4px);
+  transform                  : translate(4px,4px);
+  -webkit-box-shadow         : none;
+  -moz-box-shadow            : none;
+  -ms-box-shadow             : none;
+  -o-box-shadow              : none;
+  box-shadow                 : none;
+}
+
+.code
+{
+  align-items : center;
+}
+
+#hakyll
+{
+  display         : flex;
+  justify-content : center;
+  align-content   : center;
+}
+
+#links
+{
+  display         : flex;
+  justify-content : space-evenly;
+  align-content   : center;
+}
+
+#links > a
+{
+  display                    : flex;
+  justify-content            : center;
+  align-items                : center;
+  align-content              : center;
+  padding                    : 3px 3px 3px 3px;
+  transition-duration        : 1500.0ms;
+  transition-timing-function : ease;
+}
+
+
+#links a > img
+{
+  display               : flex;
+  max-width             : 4em;
+  max-height            : 4em;
+  -webkit-transform-box : fillBox;
+  -moz-transform-box    : fillBox;
+  -ms-transform-box     : fillBox;
+  -o-transform-box      : fillBox;
+  transform-box         : fillBox;
+}
+
+#links > a:hover
+{
+  -webkit-box-shadow         : 4px 4px rgba(0,0,0,0.5);
+  -moz-box-shadow            : 4px 4px rgba(0,0,0,0.5);
+  -ms-box-shadow             : 4px 4px rgba(0,0,0,0.5);
+  -o-box-shadow              : 4px 4px rgba(0,0,0,0.5);
+  box-shadow                 : 4px 4px rgba(0,0,0,0.5);
+  -webkit-transform          : translate(-2px,-2px);
+  -moz-transform             : translate(-2px,-2px);
+  -ms-transform              : translate(-2px,-2px);
+  -o-transform               : translate(-2px,-2px);
+  transform                  : translate(-2px,-2px);
+  border                     : 2px solid #5555ff;
+  transition-duration        : 150.0ms;
+  transition-timing-function : ease;
+}
+
+#links > a:active
+{
+  background-color           : #00de32;
+  color                      : #ffffff;
+  font-weight                : 1000;
+  transition-duration        : 150.0ms;
+  transition-timing-function : ease;
+  -webkit-transform          : translate(4px,4px);
+  -moz-transform             : translate(4px,4px);
+  -ms-transform              : translate(4px,4px);
+  -o-transform               : translate(4px,4px);
+  transform                  : translate(4px,4px);
+  -webkit-box-shadow         : none;
+  -moz-box-shadow            : none;
+  -ms-box-shadow             : none;
+  -o-box-shadow              : none;
+  box-shadow                 : none;
+}
+
+#last-update
+{
+  display         : flex;
+  justify-content : center;
+  align-content   : center;
+}
+
+footer
+{
+  display            : grid;
+  grid-template-rows : 4rem auto;
+  grid-area          : footer;
+  min-width          : 60%;
+  padding-top        : 2rem;
+  border-top         : 0.5rem solid #a6a6a6;
+  border-radius      : 0.1rem 0.1rem 0.1rem 0.1rem;
+  grid-area          : footer;
+}
+
+.containerG
+{
+  display               : grid;
+  grid-template-columns : auto auto;
+  grid-template-rows    : auto auto;
+}
+
+.containerG div
+{
+  background-color : #f1f1f1;
+  border           : 1px solid #000000;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */
