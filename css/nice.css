@@ -1,0 +1,160 @@
+
+
+:root .--colour-hover-bg
+{
+  color : #00c8c8;
+}
+
+:root .--colour-hover-fg
+{
+  color : #ffffff;
+}
+
+:root .--colour-active-bg
+{
+  color : #00de32;
+}
+
+:root .--colour-active-fg
+{
+  color : #ffffff;
+}
+
+:root .--colour-border
+{
+  color : #e6e6e6;
+}
+
+html
+{
+  font-size   : 62.5%;
+  margin      : auto auto auto auto;
+  min-width   : 400px;
+  min-height  : 400px;
+  font-family : sans-serif;
+  max-width: 1200px;
+}
+
+body
+{
+  padding          : 0px 0px 60px 0px;
+  display          : grid;
+  min-width        : 480px;
+  background-color : #e6e6e6;
+  color            : #555555;
+  font-size        : 1.5rem;
+  grid-template-columns: 1fr 99fr;
+  grid-template-areas: "sidenav content" "sidenav footer ";
+  grid-template-rows: 5fr 1fr;
+  justify-content: space-evenly;
+}
+
+#content
+{
+  min-width   : 500px;
+  display     : grid;
+  height      : 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-content: space-between;
+  grid-template-columns: 5fr 1fr;
+}
+
+
+#mainface
+{
+  display: flex;
+  align-items: center;
+}
+
+#miniface
+{
+  height : 32px;
+  width  : auto;
+  float  : right;
+  margin : 5px 5px 5px 5px;
+}
+
+#sidenav
+{
+  z-index     : 1;
+  overflow-x  : hidden;
+  grid-area: sidenav;
+  display: grid;
+  align-content: flex-start;
+  min-width: 160px;
+  
+}
+
+sidenav {
+  grid-area: sidenav;
+}
+
+content {
+  grid-area: content;
+}
+
+#sidenav a
+{
+  font-size       : 1.8rem;
+  text-transform  : uppercase;
+  display         : block;
+  text-decoration : none;
+  color           : #000000;
+  margin-top: 5px;
+  max-width: 80%;
+  height: 20px;
+  padding-bottom: 2rem;
+  -webkit-box-shadow : 5px 5px rgba(0,0,0,0.5) /* Creates box shadow underneath an element */;
+  -moz-box-shadow    : 5px 5px rgba(0,0,0,0.5) /* Creates box shadow underneath an element */;
+  -ms-box-shadow     : 5px 5px rgba(0,0,0,0.5) /* Creates box shadow underneath an element */;
+  -o-box-shadow      : 5px 5px rgba(0,0,0,0.5) /* Creates box shadow underneath an element */;
+  box-shadow         : 5px 5px rgba(0,0,0,0.5) /* Creates box shadow underneath an element */;
+  border: 3px solid;
+}
+
+#links
+{
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+#hakyll 
+{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#sidenav a:hover
+{
+  background-color : #00c8c8;
+  color            : #ffffff;
+  font-weight      : 1000;
+}
+
+#sidenav a:active
+{
+  background-color : #00de32;
+  color            : #ffffff;
+  font-weight      : 1000;
+}
+
+.code
+{
+  align-items : center;
+}
+
+footer
+{
+  border-top : 0.5rem solid #a6a6a6;
+  grid-area: footer;
+  min-width: 60%;
+  display: grid;
+  grid-template-rows: 40px auto;
+  padding-top: 2rem;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */
