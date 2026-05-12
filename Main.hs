@@ -6,6 +6,7 @@ module Main where
 import Control.Monad (forM_)
 import Hakyll
 import MyCss(genCSS)
+import GHC.IO
 
 --------------------------------------------------------------------------------
 config :: Configuration
@@ -18,13 +19,13 @@ config =
 main :: IO ()
 main = do 
   putStrLn $ "Generating css"
-  genCSS
+  _ <- genCSS
   putStrLn $ "CSS generated"
   
   hakyllWith config $ do
     forM_
       [ "images/*",
-        "css/*",
+        "css/*.css",
         "robots.txt",
         "CV/current-cv.pdf",
         "assets/*"

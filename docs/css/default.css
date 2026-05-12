@@ -28,46 +28,46 @@
 html
 {
   font-size   : 62.5%;
-  margin      : auto auto auto auto;
-  min-width   : 830px;
-  min-height  : 400px;
   font-family : sans-serif;
-  max-width   : 1200px;
 }
 
 body
 {
   display               : grid;
+  height                : 97vh;
+  width                 : 97vw;
   min-width             : 480px;
   background-color      : #e6e6e6;
   color                 : #555555;
   font-size             : 1.5rem;
-  grid-template-columns : 1fr 30fr;
-  grid-template-rows    : 5fr 1fr;
+  grid-template-rows    : 99fr 1fr;
+  grid-template-columns : 1fr 99fr;
   grid-template-areas   : "sidenav content" "sidenav footer";
-  justify-content       : space-evenly;
+  justify-content       : flex-start;
 }
 
 #content
 {
-  display               : grid;
-  padding-left          : 50px;
-  padding-right         : 50px;
-  min-width             : 500px;
-  align-content         : space-between;
-  grid-template-columns : 999fr 1fr;
-  grid-area             : content;
-  grid-template-areas   : "text mainface";
+  padding-left  : 10%;
+  padding-right : 10%;
+  align-content : space-between;
 }
 
-
-div #mainface
+#mainface
 {
-  margin-top : 40%;
+  float  : right;
+  height : 200px;
 }
 
+@media only screen and (max-width: 1060px)
+{
+#mainface
+{
+  display : none;
+}
 
-div #miniface
+}
+#miniface
 {
   height : 32px;
   width  : auto;
@@ -79,6 +79,7 @@ div #miniface
 {
   z-index       : 1;
   overflow-x    : hidden;
+  overflow-y    : auto;
   display       : grid;
   align-content : flex-start;
   min-width     : 16rem;
@@ -167,8 +168,7 @@ div #miniface
 #links a > img
 {
   display               : flex;
-  max-width             : 4em;
-  max-height            : 4em;
+  max-width             : 32px;
   -webkit-transform-box : fillBox;
   -moz-transform-box    : fillBox;
   -ms-transform-box     : fillBox;
@@ -222,13 +222,13 @@ div #miniface
 footer
 {
   display            : grid;
-  grid-template-rows : 4rem auto;
+  grid-template-rows : 4rem auto auto;
   grid-area          : footer;
   min-width          : 60%;
-  padding-top        : 2rem;
+  margin-top         : 2rem;
   border-top         : 0.5rem solid #a6a6a6;
   border-radius      : 0.1rem 0.1rem 0.1rem 0.1rem;
-  grid-area          : footer;
+  margin             : auto 10% auto 10%;
 }
 
 .containerG

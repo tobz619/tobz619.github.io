@@ -5,11 +5,12 @@
 module MyCss where
 
 import Clay
-import Clay.Stylesheet (key)
+import Clay.Stylesheet (key, Feature (..))
 import Control.Monad
 import Data.Text (Text)
 import qualified Data.Text.Lazy.IO as T
 import Prelude hiding ((**), div, rem)
+import Clay.Media (screen)
 
 rootInfo =
   ":root" `root` do
@@ -31,11 +32,7 @@ borderCol = (rgb 0xa6 0xa6 0xa6)
 myHtml =
   html ? do
     fontSize (pct 62.5)
-    sym margin auto
-    minWidth (px 830)
-    minHeight (px 400)
     fontFamily [] [sansSerif]
-    maxWidth (px 1200)
 
 p :: Css
 p =
@@ -47,13 +44,13 @@ p =
 footerCSS =
   footer ? do
     display grid
-    gridTemplateRows [rem 4, auto]
+    gridTemplateRows [rem 4, auto, auto]
     gridArea "footer"
     minWidth (pct 60)
-    paddingTop (rem 2)
+    marginTop (rem 2)
     borderTop (rem 0.5) solid borderCol
     sym borderRadius (rem 0.1)
-    gridArea "footer"
+    sym2 margin auto (pct 10)
 
 myH1 = h1 ? fontSize (rem 2.5)
 
@@ -67,14 +64,9 @@ article = do
 
 contentCSS =
   "#content" ? do
-    display grid
-    paddingLeft (px 50)
-    paddingRight (px 50)
-    minWidth (px 500)
+    paddingLeft (pct 10)
+    paddingRight (pct 10)
     alignContent spaceBetween
-    gridTemplateColumns [fr 999, fr 1]
-    gridArea "content"
-    gridTemplateAreas ["text mainface"]
 
 gridTemplateRows :: [Size a] -> Css
 gridTemplateRows = key "grid-template-rows" . noCommas
@@ -86,14 +78,16 @@ bodyCSS :: Css
 bodyCSS =
   "body" ? do
     display grid
+    height (vh 97)
+    width (vw 97)
     minWidth (px 480)
     backgroundColor (rgb 0xe6 0xe6 0xe6)
     color (rgb 0x55 0x55 0x55)
     fontSize (rem 1.5)
-    gridTemplateColumns [fr 1, fr 30]
-    gridTemplateRows [fr 5, fr 1]
+    gridTemplateRows [fr 99, fr 1  ]
+    gridTemplateColumns [fr 1 , fr 99 ]
     gridTemplateAreas ["sidenav content", "sidenav footer"]
-    justifyContent spaceEvenly
+    justifyContent flexStart
 
 containerG cols rows =
   ".containerG" ? do
@@ -114,6 +108,7 @@ sideNav = do
   "#sidenav" ? do
     zIndex 1
     overflowX hidden
+    overflowY auto
     display grid
     alignContent flexStart
     minWidth (rem 16)
@@ -155,10 +150,14 @@ clickAnim = do
 
 image :: Number -> FloatStyle -> Css
 image sz fl = do
-  div <? "#mainface" ? do
-    marginTop (pct 40)
+  "#mainface" ? do
+    float fl
+    height (px sz)
+    queryOnly screen [Feature "max-width" (Just .value $ px 1060)] $ do
+      display none
 
-  div <? "#miniface" ? do
+
+  "#miniface" ? do
     height (px 32)
     width auto
     float floatRight
@@ -184,8 +183,7 @@ linksCSS =
       transitionTimingFunction ease
     a ? img <? do
       display flex
-      maxWidth (em 4)
-      maxHeight (em 4)
+      maxWidth (px 32)
       transformBox fillBox
     a # hover <? do 
       myBoxShadow 4 4 0.5

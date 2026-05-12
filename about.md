@@ -1,7 +1,7 @@
 ---
 title: Welcome to Tobi Oloke
 ---
-<div id=text>
+
 # Welcome to Tobi Oloke
 
 This website is a personal project as I develop on my Haskell and 3D Realtime Graphics/GameDev journey.
@@ -16,6 +16,5 @@ As of writing it has been 3 years and 8 months since I started working in Softwa
 the lower level I want to get. I enjoy writing in C, I'm on route to learning x86 ASM, and even some circuitry
 for electrical engineering. Some of these projects will begin to pop up on this blog over time.
 
-As of the last updated, I really wanted to get my head around CSS and do some nice and basic effects such as understanding
+As of the last updates, I really wanted to get my head around CSS and do some nice and basic effects such as understanding
 grids and flex properly. Also I wanted to understand my Hakyll work flow properly.
-</div>

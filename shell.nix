@@ -20,6 +20,7 @@ haskellPacks.shellFor {
     '';
     nativeBuildInputs = (with haskellPacks; [
       haskell-language-server
+      hakyll
       cabal-install
       cabal2nix
       stack
