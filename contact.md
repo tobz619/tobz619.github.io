@@ -1,6 +1,8 @@
 ---
 title: Contact and Socials!
 ---
+<div id="text">
+
 # Contact and Socials!
 
 Email: <a href = "mailto: tobi@tobioloke.com"> tobi@tobioloke.com</a>
@@ -16,3 +18,4 @@ YouTube: <a href = "https://www.youtube.com/channel/UCjA_GLW3WznqqkdrVOnA3FA"> C
 Instagram: <a href = "https://www.instagram.com/tobioloke_/"> \@tobioloke\_ </a>
 
 Twitch: <a href = "https://www.twitch.tv/tobz619" > tobz619 </a>
+</div>

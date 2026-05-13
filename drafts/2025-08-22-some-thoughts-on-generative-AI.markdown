@@ -35,7 +35,7 @@ However, just as time and space are not equally distributed amongst us, neither 
 another, some people are just better at some things than others; and some people have more time to get better at some things than others.
 
 I am in agreement with Rob Miles: [*technology is good*](https://www.youtube.com/watch?v=zATXsGm_xJo) because technology
-allows us to do more, better and faster. For those who cannot paint, photography represents a new ability to be creative.
+allows us to do more, better and faster. For those who cannot paint, photography presents the ability to show the world from the beholder's perspective.
 For every writer, there can also be movie producer to translate the written word into immersive and moving visuals.
 
 New technology enables us to do more

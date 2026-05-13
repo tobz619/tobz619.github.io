@@ -29,6 +29,9 @@ activeFg = white
 borderCol :: Color
 borderCol = (rgb 0xa6 0xa6 0xa6)
 
+bgCol :: Color
+bgCol = (rgb 0xe6 0xe6 0xe6)
+
 myHtml =
   html ? do
     fontSize (pct 62.5)
@@ -46,11 +49,13 @@ footerCSS =
     display grid
     gridTemplateRows [rem 4, auto, auto]
     gridArea "footer"
-    minWidth (pct 60)
+    width (ch 80)
+    queryOnly screen [Feature "max-width" (Just . value $ px 640)] $ do
+      width (px 480)
     marginTop (rem 2)
     borderTop (rem 0.5) solid borderCol
     sym borderRadius (rem 0.1)
-    sym2 margin auto (pct 10)
+    sym2 margin (px 0) (auto)
 
 myH1 = h1 ? fontSize (rem 2.5)
 
@@ -64,9 +69,14 @@ article = do
 
 contentCSS =
   "#content" ? do
-    paddingLeft (pct 10)
-    paddingRight (pct 10)
+    display flex
+    flexDirection column
+    sym2 margin (px 0) auto
+    maxWidth (ch 80)
     alignContent spaceBetween
+
+textCSS = "#text" ? do
+  flexGrow 99
 
 gridTemplateRows :: [Size a] -> Css
 gridTemplateRows = key "grid-template-rows" . noCommas
@@ -74,29 +84,33 @@ gridTemplateRows = key "grid-template-rows" . noCommas
 gridTemplateAreas :: [Text] -> Css
 gridTemplateAreas = key "grid-template-areas" . noCommas . fmap Literal
 
+justifySelf :: JustifyContentValue -> Css
+justifySelf = key "justify-self" . JustifyContentValue . value
+
 bodyCSS :: Css
 bodyCSS =
-  "body" ? do
+  body ? do
     display grid
-    height (vh 97)
-    width (vw 97)
+    height (svh 97)
+    width (svw 97)
     minWidth (px 480)
-    backgroundColor (rgb 0xe6 0xe6 0xe6)
+    backgroundColor bgCol
     color (rgb 0x55 0x55 0x55)
     fontSize (rem 1.5)
-    gridTemplateRows [fr 99, fr 1  ]
-    gridTemplateColumns [fr 1 , fr 99 ]
-    gridTemplateAreas ["sidenav content", "sidenav footer"]
     justifyContent flexStart
 
-containerG cols rows =
+containerG areas rows cols  =
   ".containerG" ? do
     display grid
     gridTemplateColumns cols
     gridTemplateRows rows
-    div ? do
-      backgroundColor (rgb 0xf1 0xf1 0xf1)
-      border (px 1) solid black
+    gridTemplateAreas areas
+
+containerF areas cols  =
+  ".containerF" ? do
+    display grid
+    gridTemplateColumns cols
+    gridTemplateAreas areas
 
 codeCSS :: Css
 codeCSS =
@@ -216,14 +230,58 @@ multiColourBorder = do
     --       (fmap (,auto) [red, orange, yellow, green, blue, indigo, violet, red])
     --   )
 
+formCSS = form ? do
+  border (px 3) solid borderCol
+  display grid
+  justifySelf center
+  queryOnly screen [Feature "min-width" (Just .value $ px 640)] $ do
+      width (px 480)
+  width (pct 80)
+  "#login-box" & do
+    buttonCSS
+    inputCSS
+  label <? do
+    paddingLeft (px 10)
+
+inputCSS = forM_ ["text", "password" ] $ \r -> do
+  input # ("type" @= r) ? do
+    sym2 padding (px 12) (px 20)
+    sym2 margin (px 8) (px 10)
+    
+buttonCSS = button ? do
+  backgroundColor brown
+  color gold
+  sym padding (px 5)
+  sym margin (px 5)
+  cursor pointer
+  hover & do
+    opacity 0.8
+    cursor pointer
+
+loginBody = body ? do
+      display grid
+      height (svh 100)
+      width (svw 100)
+      backgroundColor bgCol
+      color (rgb 0x55 0x55 0x55)
+      fontSize (rem 1.5)
+      alignContent center
+      alignItems center
+
+loginCSS = do
+  loginBody  
+  formCSS
+
+
 genCSS :: IO ()
-genCSS =
+genCSS = do
   T.writeFile "css/default.css" $
     renderWith pretty [] $ do
       rootInfo
       myHtml
       bodyCSS
       contentCSS
+      textCSS
       image 200 floatRight
       sideNav
       codeCSS
@@ -231,4 +289,12 @@ genCSS =
       linksCSS
       lastUpdateCSS
       footerCSS
-      containerG [auto, auto] [auto, auto]
+      containerF
+        ["sidenav content"] 
+        [fr 1 , fr 99 ]
+  
+  T.writeFile "css/login.css" $
+    renderWith pretty [] $ do
+      rootInfo
+      myHtml
+      loginCSS

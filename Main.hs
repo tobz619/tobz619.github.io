@@ -7,6 +7,7 @@ import Control.Monad (forM_)
 import Hakyll
 import MyCss(genCSS)
 import GHC.IO
+import Data.List (unsnoc)
 
 --------------------------------------------------------------------------------
 config :: Configuration
@@ -27,52 +28,47 @@ main = do
       [ "images/*",
         "css/*.css",
         "robots.txt",
-        "CV/current-cv.pdf",
         "assets/*"
       ]
       $ \f -> match f $ do
         route idRoute
         compile copyFileCompiler
 
+    match "CV/*.pdf" $ do
+      route $ constRoute "cv.pdf"
+      compile $ copyFileCompiler
+
     forM_
       [ "about.md",
-        "contact.markdown"
+        "contact.md"
       ]
       $ \f -> match f $ do
         route $ setExtension "html"
         compile $
           pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "html/templates/default.html" defaultContext
             >>= relativizeUrls
+
+    match "html/templates/*" $ compile templateBodyCompiler
 
     match "posts/*" $ do
       route $ setExtension "html"
       compile $
         pandocCompiler
-          >>= loadAndApplyTemplate "templates/post.html" postCtx
-          >>= loadAndApplyTemplate "templates/default.html" postCtx
+          >>= loadAndApplyTemplate "html/templates/post.html" postCtx
+          >>= loadAndApplyTemplate "html/templates/default.html" postCtx
           >>= relativizeUrls
 
-    match "creations.html" $ do
-      route idRoute
+    match "html/base/creations.html" $ do
+      route $ customRoute (baseName . toFilePath)
       compile $
         pandocCompiler
-          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= loadAndApplyTemplate "html/templates/default.html" defaultContext
           >>= relativizeUrls
 
-    -- create ["videos.html"] $ do
-    --   route idRoute
-    --   compile $ do
-    --     videos <- loadAll "videos/*"
-    --     let videoCtx = listField "videos" defaultContext (return videos) <>
-    --                    defaultContext
-    --     makeItem ""
-    --       >>= loadAndApplyTemplate "templates/videos.html" videoCtx
-    --       >>= loadAndApplyTemplate "templates/default.html" defaultContext
-    --       >>= relativizeUrls
 
     create ["archive.html"] $ do
-      route idRoute
+      route $ customRoute (baseName . toFilePath)
       compile $ do
         posts <- recentFirst =<< loadAll "posts/*"
         let archiveCtx =
@@ -81,12 +77,12 @@ main = do
                 <> defaultContext
 
         makeItem ""
-          >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-          >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+          >>= loadAndApplyTemplate "html/templates/archive.html" archiveCtx
+          >>= loadAndApplyTemplate "html/templates/default.html" archiveCtx
           >>= relativizeUrls
 
-    match "index.html" $ do
-      route idRoute
+    match "html/base/index.html" $ do
+      route $ customRoute (baseName . toFilePath)
       compile $ do
         posts <- recentFirst =<< loadAll "posts/*"
         let indexCtx =
@@ -95,13 +91,22 @@ main = do
 
         getResourceBody
           >>= applyAsTemplate indexCtx
-          >>= loadAndApplyTemplate "templates/default.html" indexCtx
+          >>= loadAndApplyTemplate "html/templates/default.html" indexCtx
           >>= relativizeUrls
 
-    match "templates/*" $ compile templateBodyCompiler
+    match "html/login/login.html" $ do
+      route $ customRoute (baseName . toFilePath)
+      compile $ copyFileCompiler
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
   dateField "date" "%B %e, %Y"
     <> defaultContext
+
+baseName :: [Char] -> [Char]
+baseName = maybe "error" snd . unsnoc . splitOn '/'
+  where splitOn ident xs = foldr splitter [[]] xs
+          where splitter x (hd:rest)
+                  | x == ident = ([]:hd:rest)
+                  | otherwise = ((x:hd):rest)

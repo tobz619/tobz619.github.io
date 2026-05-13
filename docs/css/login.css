@@ -1,0 +1,96 @@
+
+
+:root .--colour-hover-bg
+{
+  color : #00c8c8;
+}
+
+:root .--colour-hover-fg
+{
+  color : #ffffff;
+}
+
+:root .--colour-active-bg
+{
+  color : #00de32;
+}
+
+:root .--colour-active-fg
+{
+  color : #ffffff;
+}
+
+:root .--colour-border
+{
+  color : #a6a6a6;
+}
+
+html
+{
+  font-size   : 62.5%;
+  font-family : sans-serif;
+}
+
+body
+{
+  display          : grid;
+  height           : 100svh;
+  width            : 100svw;
+  background-color : #e6e6e6;
+  color            : #555555;
+  font-size        : 1.5rem;
+  align-content    : center;
+  align-items      : center;
+}
+
+form
+{
+  border       : 3px solid #a6a6a6;
+  display      : grid;
+  justify-self : center;
+  width        : 80%;
+}
+
+
+form#login-box button
+{
+  background-color : #a52a2a;
+  color            : #ffd700;
+  padding          : 5px 5px 5px 5px;
+  margin           : 5px 5px 5px 5px;
+  cursor           : pointer;
+}
+
+form#login-box button:hover
+{
+  opacity : 0.8;
+  cursor  : pointer;
+}
+
+form#login-box input[type='text']
+{
+  padding : 12px 20px 12px 20px;
+  margin  : 8px 10px 8px 10px;
+}
+
+form#login-box input[type='password']
+{
+  padding : 12px 20px 12px 20px;
+  margin  : 8px 10px 8px 10px;
+}
+
+form > label
+{
+  padding-left : 10px;
+}
+
+@media only screen and (min-width: 640px)
+{
+form
+{
+  width : 480px;
+}
+
+}
+
+/* Generated with Clay, http://fvisser.nl/clay */

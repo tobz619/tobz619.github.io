@@ -33,24 +33,28 @@ html
 
 body
 {
-  display               : grid;
-  height                : 97vh;
-  width                 : 97vw;
-  min-width             : 480px;
-  background-color      : #e6e6e6;
-  color                 : #555555;
-  font-size             : 1.5rem;
-  grid-template-rows    : 99fr 1fr;
-  grid-template-columns : 1fr 99fr;
-  grid-template-areas   : "sidenav content" "sidenav footer";
-  justify-content       : flex-start;
+  display          : grid;
+  height           : 97svh;
+  width            : 97svw;
+  min-width        : 480px;
+  background-color : #e6e6e6;
+  color            : #555555;
+  font-size        : 1.5rem;
+  justify-content  : flex-start;
 }
 
 #content
 {
-  padding-left  : 10%;
-  padding-right : 10%;
-  align-content : space-between;
+  display        : flex;
+  flex-direction : column;
+  margin         : 0px auto 0px auto;
+  max-width      : 80ch;
+  align-content  : space-between;
+}
+
+#text
+{
+  flex-grow : 99;
 }
 
 #mainface
@@ -224,24 +228,26 @@ footer
   display            : grid;
   grid-template-rows : 4rem auto auto;
   grid-area          : footer;
-  min-width          : 60%;
+  width              : 80ch;
   margin-top         : 2rem;
   border-top         : 0.5rem solid #a6a6a6;
   border-radius      : 0.1rem 0.1rem 0.1rem 0.1rem;
-  margin             : auto 10% auto 10%;
+  margin             : 0px auto 0px auto;
 }
 
-.containerG
+@media only screen and (max-width: 640px)
+{
+footer
+{
+  width : 480px;
+}
+
+}
+.containerF
 {
   display               : grid;
-  grid-template-columns : auto auto;
-  grid-template-rows    : auto auto;
-}
-
-.containerG div
-{
-  background-color : #f1f1f1;
-  border           : 1px solid #000000;
+  grid-template-columns : 1fr 99fr;
+  grid-template-areas   : "sidenav content";
 }
 
 
