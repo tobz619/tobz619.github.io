@@ -30,6 +30,7 @@ haskellPacks.shellFor {
       pandoc
       texliveSmall
       firefox
+      bashInteractive
     ]);
     doCheck = false;
 }
